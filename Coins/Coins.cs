@@ -17,13 +17,16 @@ namespace Coins.Models
             Nickels = 0;
             Pennies = 0;
         }
-        public void ConvertToQuarters(double userInput)
+        public void ConvertToQuarters(double userInput0)
         {
-            if (userInput >= .25)
+            
+            int userInput = (int)(userInput0 * 100);
+
+            if (userInput >= 25)
             {
-                double quartersAmount = Math.Floor(userInput / .25);
-                this.Quarters += (int)quartersAmount;
-                double quartersRemainder = userInput % .25;
+                int quartersAmount = (userInput / 25);
+                this.Quarters += quartersAmount;
+                int quartersRemainder = userInput % 25;
                 ConvertToDimes(quartersRemainder);
             }
             else
@@ -31,32 +34,32 @@ namespace Coins.Models
                 ConvertToDimes(userInput);
             }
         }
-        public void ConvertToDimes(double userInput)
+        public void ConvertToDimes(int userInput)
         {
-            if (userInput >= .10)
+            if (userInput >= 10)
             {
-                double dimesAmount = Math.Floor(userInput / .10);
-                this.Dimes += (int)dimesAmount;
-                double dimesRemainder = userInput % .10;
-                ConvertToNickles(dimesRemainder);
+                int dimesAmount = (userInput / 10);
+                this.Dimes += dimesAmount;
+                int dimesRemainder = userInput % 10;
+                ConvertToNickels(dimesRemainder);
             }
             else
             {
-                ConvertToNickles(userInput);
+                ConvertToNickels(userInput);
             }
         }
-        public void ConvertToNickles(double userInput)
+        public void ConvertToNickels(int userInput)
         {
-            if (userInput >= .05)
+            if (userInput >= 5)
             {
-                double nickelsAmount = Math.Floor(userInput / .05);
-                this.Nickels += (int)nickelsAmount;
-                double nickelsRemainder = userInput % .05;
-                this.Pennies += (int)nickelsRemainder;
+                int nickelsAmount = (userInput / 5);
+                this.Nickels += nickelsAmount;
+                int nickelsRemainder = userInput % 5;
+                this.Pennies += (nickelsRemainder);
             }
             else
             {
-                this.Pennies += (int)userInput;
+                this.Pennies += (int)(userInput);
             }
         }
     }
